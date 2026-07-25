@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDropzone } from "react-dropzone";
-import { Download, Link, Loader2, Upload } from "lucide-react";
+import { Download, Link, Loader2 } from "lucide-react";
 import { ALLOWED_FILE_TYPES, MAX_SIZE } from "../constants";
 import { cn } from "../lib/utils";
 import type { ServerUploadResponse } from "../types";
@@ -159,7 +159,12 @@ const ImageDropzone = () => {
                                 {...getRootProps({ className: cn("dropzone", fileRejections.length > 0 && "border-red-600") })}
                             >
                                 <input {...getInputProps()} />
-                                <Upload className="size-8 text-blue-700" />
+                                <img
+                                    src="/exit.svg"
+                                    alt="Exit"
+                                    width={44}
+                                    height={44}
+                                />
                                 <p className="font-semibold mt-6 mb-2">
                                     {isDragActive ? "Drop the file " : "Drag & drop a file or"} <span className={cn("text-blue-700", isDragActive ? "cursor-default" : "cursor-pointer")} onClick={() => isDragActive ? {} : open()}>{isDragActive ? " here" : " browse files"}</span>
                                 </p>
