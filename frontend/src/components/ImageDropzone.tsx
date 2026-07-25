@@ -75,12 +75,15 @@ const ImageDropzone = () => {
         }
     }
 
-    const handleFileShare = () => {
+    const handleFileShare = async () => {
         if (!uploadedFileData) return;
-        navigator.clipboard.writeText(uploadedFileData.url)
-        sileo.success({
-            title: "Link copied to clipboard"
-        });
+
+        try {
+            await navigator.clipboard.writeText(uploadedFileData.url);
+            sileo.success({ title: "Link copied to clipboard" });
+        } catch {
+            sileo.error({ title: "Could not copy link to clipboard" });
+        }
     }
 
     const handleFileDownload = async () => {
