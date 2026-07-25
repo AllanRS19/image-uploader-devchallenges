@@ -22,7 +22,7 @@ const handleUpload = (req: Request, res: Response, next: NextFunction) => {
     });
 }
 
-// GET: /api/v1/uploads/download:filename
+// GET: /api/v1/uploads/download/:filename
 uploadRouter.get('/download/:filename', downloadImage);
 
 // POST: /api/v1/uploads
