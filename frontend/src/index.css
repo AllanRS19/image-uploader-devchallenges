@@ -1,1 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+    /* Colors */
+    --background: #FFFFFF;
+    --foreground: #171717;
+    --border-color: #E5E7EB;
+    --grey-400: #4D5562;
+    --grey-500: #212936;
+    --grey-600: #121826;
+    --blue-300: #C2DAF9;
+    --blue-700: #3662E3;
+
+    /* Fonts */
+    --font-inter: "Inter", sans-serif;
+}
+
+.dark {
+    --background: #121826;
+    --foreground: #ededed;
+    --border-color: #212936;
+    --grey-400: #4D5562;
+}
+
+@theme inline {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-border-color: var(--border-color);
+    --color-grey-400: var(--grey-400);
+    --color-grey-500: var(--grey-500);
+    --color-grey-600: var(--grey-600);
+    --color-blue-300: var(--blue-300);
+    --color-blue-700: var(--blue-700);
+
+    --font-inter: var(--font-inter);
+
+    --animate-upload-loader: upload-loader 1.3s linear infinite;
+}
+
+@layer base {
+    body {
+        @apply bg-background font-inter text-foreground transition-colors duration-200;
+    }
+}
+
+@layer components {
+    .header {
+        @apply w-full h-20 border-b border-b-border-color px-6 sm:px-20;
+
+        .navbar {
+            @apply size-full flex items-center justify-between;
+        }
+    }
+
+    .main-content-wrapper {
+        @apply w-full h-[calc(100vh-5rem)] flex items-center justify-center px-6 sm:px-20;
+
+        .dropzone-container {
+            @apply w-full max-w-3xl p-6 rounded-lg shadow-[2px_-6px_46px_0px_rgba(0,0,0,0.1)] bg-white dark:bg-border-color;
+
+            .dropzone {
+                @apply size-full flex flex-col items-center justify-center text-center px-3 border-2 border-border-color dark:border-grey-400 border-dashed rounded-lg transition-colors duration-300 hover:border-gray-400;
+            }
+        }
+    }
+}
+
+@keyframes upload-loader {
+    0% {
+        left: -20%;
+    }
+    100% {
+        left: 100%;
+    }
+}
